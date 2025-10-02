@@ -1,0 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+
+body {
+  min-height: 100vh;
+  font-family: "Oswald", system-ui, sans-serif;
+}
+
+button {
+  border: none;
+}
+button:hover {
+  cursor: pointer;
+}
