@@ -81,6 +81,14 @@ export const PasswordProvider = ({
   //   setStrength(strengthNames[strength - 1]);
   // };
 
+  const setNewParams = (newParams: ParametersType) => {
+    const { uppercase, lowercase, numbers, symbols } = newParams;
+    if (uppercase || lowercase || numbers || symbols) {
+      setParams(newParams);
+    }
+    return;
+  };
+
   useEffect(() => {
     setPassword(generatePassword(params));
   }, [params]);
@@ -89,7 +97,7 @@ export const PasswordProvider = ({
     setPassword(generatePassword(params));
   }, [params]);
 
-  const value = { password, params, setParams, generateAgain };
+  const value = { password, params, setNewParams, generateAgain };
   return (
     <PasswordContext.Provider value={value}>
       {children}

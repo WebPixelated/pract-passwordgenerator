@@ -3,7 +3,7 @@ import { createContext, useContext } from "react";
 export type PasswordContextType = {
   password: string;
   params: ParametersType;
-  setParams: (params: ParametersType) => void;
+  setNewParams: (params: ParametersType) => void;
   generateAgain: () => void;
   // generatePassword: () => string;
   // setPassword: (password: string) => void;

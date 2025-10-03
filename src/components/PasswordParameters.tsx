@@ -5,7 +5,7 @@ function PasswordParameters() {
   if (!passwordContext) {
     return null;
   }
-  const { params, setParams } = passwordContext;
+  const { params, setNewParams } = passwordContext;
 
   return (
     <section>
@@ -20,7 +20,7 @@ function PasswordParameters() {
             id="passLength"
             value={params.length}
             onChange={(e) =>
-              setParams({ ...params, length: Number(e.target.value) })
+              setNewParams({ ...params, length: Number(e.target.value) })
             }
           />
         </div>
@@ -31,7 +31,7 @@ function PasswordParameters() {
           id="passUppercase"
           checked={params.uppercase}
           onChange={(e) =>
-            setParams({ ...params, uppercase: e.target.checked })
+            setNewParams({ ...params, uppercase: e.target.checked })
           }
         />
         <label htmlFor="passUppercase">Uppercase</label>
@@ -42,7 +42,7 @@ function PasswordParameters() {
           id="passLowercase"
           checked={params.lowercase}
           onChange={(e) =>
-            setParams({ ...params, lowercase: e.target.checked })
+            setNewParams({ ...params, lowercase: e.target.checked })
           }
         />
         <label htmlFor="passLowercase">Lowercase</label>
@@ -52,7 +52,9 @@ function PasswordParameters() {
           type="checkbox"
           id="passNumbers"
           checked={params.numbers}
-          onChange={(e) => setParams({ ...params, numbers: e.target.checked })}
+          onChange={(e) =>
+            setNewParams({ ...params, numbers: e.target.checked })
+          }
         />
         <label htmlFor="passNumbers">Numbers</label>
       </div>
@@ -61,7 +63,9 @@ function PasswordParameters() {
           type="checkbox"
           id="passSymbols"
           checked={params.symbols}
-          onChange={(e) => setParams({ ...params, symbols: e.target.checked })}
+          onChange={(e) =>
+            setNewParams({ ...params, symbols: e.target.checked })
+          }
         />
         <label htmlFor="passSymbols">Symbols</label>
       </div>
