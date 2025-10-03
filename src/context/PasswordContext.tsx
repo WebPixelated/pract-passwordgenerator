@@ -2,7 +2,19 @@ import { createContext, useContext } from "react";
 
 export type PasswordContextType = {
   password: string;
-  setPassword: (password: string) => void;
+  params: ParametersType;
+  setParams: (params: ParametersType) => void;
+  generateAgain: () => void;
+  // generatePassword: () => string;
+  // setPassword: (password: string) => void;
+};
+
+export type ParametersType = {
+  length: number;
+  uppercase: boolean;
+  lowercase: boolean;
+  numbers: boolean;
+  symbols: boolean;
 };
 
 export const PasswordContext = createContext<PasswordContextType | undefined>(
