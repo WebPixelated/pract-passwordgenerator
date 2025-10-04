@@ -50,4 +50,4 @@ npm run dev
 ## Links
 
 - Project URL: [Password Generator](https://github.com/WebPixelated/pract-passwordgenerator)
-- Live Website URL: [Website](template)
+- Live Website URL: [Website](https://passgen-wpx.netlify.app/)
