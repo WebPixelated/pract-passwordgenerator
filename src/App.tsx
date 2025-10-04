@@ -1,3 +1,4 @@
+import { ToastContainer } from "react-toastify";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import PasswordContainer from "./components/PasswordContainer";
@@ -10,6 +11,7 @@ function App() {
         <PasswordContainer />
         <Footer />
       </div>
+      <ToastContainer position="top-center" limit={3} />
     </div>
   );
 }
