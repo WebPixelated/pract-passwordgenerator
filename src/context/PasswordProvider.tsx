@@ -6,6 +6,11 @@ export const PasswordProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
+  const upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const lower = "abcdefghijklmnopqrstuvwxyz";
+  const numbers = "0123456789";
+  const symbols = "!@#$%^&*()_+~`|}{[]:;?><,./-=";
+
   const [password, setPassword] = useState("");
   const [params, setParams] = useState({
     length: 8,
@@ -17,11 +22,6 @@ export const PasswordProvider = ({
   const [strength, setStrength] = useState("");
 
   const generatePassword = (params: ParametersType) => {
-    const upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    const lower = "abcdefghijklmnopqrstuvwxyz";
-    const numbers = "0123456789";
-    const symbols = "!@#$%^&*()_+~`|}{[]:;?><,./-=";
-
     let validChars = "";
     const requiredChars: string[] = [];
 

@@ -21,4 +21,10 @@ export type ParametersType = {
 export const PasswordContext = createContext<PasswordContextType | undefined>(
   undefined
 );
-export const usePassword = () => useContext(PasswordContext);
+export const usePassword = () => {
+  const context = useContext(PasswordContext);
+  if (context === undefined) {
+    throw new Error("usePassword must be used within a PasswordProvider");
+  }
+  return context;
+};

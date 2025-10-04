@@ -26,10 +26,15 @@ function PasswordArea() {
         <Button
           action={() => copyPasswordToClipboard(password)}
           classes={`${buttonClasses} right-8`}
+          aria-label="Copy password to clipboard"
         >
           <FaCopy />
         </Button>
-        <Button action={generateAgain} classes={`${buttonClasses} right-0`}>
+        <Button
+          action={generateAgain}
+          classes={`${buttonClasses} right-0`}
+          aria-label="Generate new password"
+        >
           <IoReload />
         </Button>
       </div>

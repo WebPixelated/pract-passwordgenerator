@@ -1,5 +1,5 @@
 import PasswordArea from "./PasswordArea";
-import PasswordCopy from "./PasswordCopy";
+import PasswordGenerate from "./PasswordGenerate";
 import PasswordParameters from "./PasswordParameters";
 
 function PasswordContainer() {
@@ -7,7 +7,7 @@ function PasswordContainer() {
     <main className="flex flex-col gap-4">
       <PasswordArea />
       <PasswordParameters />
-      <PasswordCopy />
+      <PasswordGenerate />
     </main>
   );
 }
