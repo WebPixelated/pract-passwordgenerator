@@ -4,7 +4,7 @@ import PasswordParameters from "./PasswordParameters";
 
 function PasswordContainer() {
   return (
-    <main>
+    <main className="flex flex-col gap-4">
       <PasswordArea />
       <PasswordParameters />
       <PasswordCopy />

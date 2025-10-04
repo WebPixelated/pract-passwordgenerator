@@ -9,67 +9,77 @@ function PasswordParameters() {
 
   return (
     <section>
-      <div className="">
+      <div className="flex flex-col flex-nowrap relative">
         <p>Length</p>
-        <div className="">
-          <label htmlFor="passLength">{params.length}</label>
-          <input
-            type="range"
-            min={4}
-            max={24}
-            id="passLength"
-            value={params.length}
-            onChange={(e) =>
-              setNewParams({ ...params, length: Number(e.target.value) })
-            }
-          />
-        </div>
-      </div>
-      <div className="">
+        <label htmlFor="passLength" className="absolute top-0 right-0">
+          {params.length}
+        </label>
         <input
-          type="checkbox"
-          id="passUppercase"
-          checked={params.uppercase}
+          type="range"
+          min={4}
+          max={24}
+          id="passLength"
+          value={params.length}
           onChange={(e) =>
-            setNewParams({ ...params, uppercase: e.target.checked })
+            setNewParams({ ...params, length: Number(e.target.value) })
           }
+          className="w-full accent-sky-950"
         />
-        <label htmlFor="passUppercase">Uppercase</label>
       </div>
-      <div className="">
-        <input
-          type="checkbox"
-          id="passLowercase"
-          checked={params.lowercase}
-          onChange={(e) =>
-            setNewParams({ ...params, lowercase: e.target.checked })
-          }
-        />
-        <label htmlFor="passLowercase">Lowercase</label>
-      </div>
-      <div className="">
-        <input
-          type="checkbox"
-          id="passNumbers"
-          checked={params.numbers}
-          onChange={(e) =>
-            setNewParams({ ...params, numbers: e.target.checked })
-          }
-        />
-        <label htmlFor="passNumbers">Numbers</label>
-      </div>
-      <div className="">
-        <input
-          type="checkbox"
-          id="passSymbols"
-          checked={params.symbols}
-          onChange={(e) =>
-            setNewParams({ ...params, symbols: e.target.checked })
-          }
-        />
-        <label htmlFor="passSymbols">Symbols</label>
-      </div>
+      <Checkbox
+        id="passUppercase"
+        label="Uppercase"
+        checked={params.uppercase}
+        onChange={(e) =>
+          setNewParams({ ...params, uppercase: e.target.checked })
+        }
+      />
+      <Checkbox
+        id="passLowercase"
+        label="Lowercase"
+        checked={params.lowercase}
+        onChange={(e) =>
+          setNewParams({ ...params, lowercase: e.target.checked })
+        }
+      />
+      <Checkbox
+        id="passNumbers"
+        label="Numbers"
+        checked={params.numbers}
+        onChange={(e) => setNewParams({ ...params, numbers: e.target.checked })}
+      />
+      <Checkbox
+        id="passSymbols"
+        label="Symbols"
+        checked={params.symbols}
+        onChange={(e) => setNewParams({ ...params, symbols: e.target.checked })}
+      />
     </section>
   );
 }
 export default PasswordParameters;
+
+function Checkbox({
+  id,
+  label,
+  checked,
+  onChange,
+}: {
+  id: string;
+  label: string;
+  checked: boolean;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}) {
+  return (
+    <div className="flex flex-row flex-nowrap gap-2 items-center">
+      <input
+        type="checkbox"
+        id={id}
+        checked={checked}
+        onChange={onChange}
+        className="accent-sky-950 min-h-[18px] min-w-[18px] hover:accent-sky-800"
+      />
+      <label htmlFor={id}>{label}</label>
+    </div>
+  );
+}

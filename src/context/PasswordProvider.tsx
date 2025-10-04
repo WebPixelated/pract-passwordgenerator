@@ -14,7 +14,7 @@ export const PasswordProvider = ({
     numbers: true,
     symbols: false,
   });
-  // const [strength, setStrength] = useState("");
+  const [strength, setStrength] = useState("");
 
   const generatePassword = (params: ParametersType) => {
     const upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -58,28 +58,44 @@ export const PasswordProvider = ({
     return generatedPassword;
   };
 
-  // const calculateStrength = (password: string) => {
-  //   const strengthNames = [
-  //     "Very Weak",
-  //     "Weak",
-  //     "Moderate",
-  //     "Strong",
-  //     "Very Strong",
-  //   ];
+  const calculateStrength = (password: string): void => {
+    // Initialize variables
+    let passStrength = 0;
+    let passType = "";
 
-  //   let strength = 0;
-  //   const lengthCriteria = password.length >= 8;
-  //   const uppercaseCriteria = /[A-Z]/.test(password);
-  //   const lowercaseCriteria = /[a-z]/.test(password);
-  //   const numberCriteria = /[0-9]/.test(password);
-  //   const symbolCriteria = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-  //   if (lengthCriteria) strength += 1;
-  //   if (uppercaseCriteria) strength += 1;
-  //   if (lowercaseCriteria) strength += 1;
-  //   if (numberCriteria) strength += 1;
-  //   if (symbolCriteria) strength += 1;
-  //   setStrength(strengthNames[strength - 1]);
-  // };
+    // Check password length
+    if (password.length >= 8) {
+      passStrength += 1;
+    }
+
+    // Check for mixed case
+    if (password.match(/[a-z]/) && password.match(/[A-Z]/)) {
+      passStrength += 1;
+    }
+
+    // Check for numbers
+    if (password.match(/\d/)) {
+      passStrength += 1;
+    }
+
+    // Check for special characters
+    if (password.match(/[^a-zA-Z\d]/)) {
+      passStrength += 1;
+    }
+
+    // Return results
+    if (passStrength < 2) {
+      passType = "Weak";
+    } else if (passStrength === 2) {
+      passType = "Average";
+    } else if (passStrength === 3) {
+      passType = "Strong";
+    } else {
+      passType = "Very Strong";
+    }
+
+    setStrength(passType);
+  };
 
   const setNewParams = (newParams: ParametersType) => {
     const { uppercase, lowercase, numbers, symbols } = newParams;
@@ -93,11 +109,15 @@ export const PasswordProvider = ({
     setPassword(generatePassword(params));
   }, [params]);
 
+  useEffect(() => {
+    calculateStrength(password);
+  }, [password]);
+
   const generateAgain = useCallback(() => {
     setPassword(generatePassword(params));
   }, [params]);
 
-  const value = { password, params, setNewParams, generateAgain };
+  const value = { password, params, strength, setNewParams, generateAgain };
   return (
     <PasswordContext.Provider value={value}>
       {children}

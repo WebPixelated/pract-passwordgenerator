@@ -5,6 +5,7 @@ export type PasswordContextType = {
   params: ParametersType;
   setNewParams: (params: ParametersType) => void;
   generateAgain: () => void;
+  strength: string;
   // generatePassword: () => string;
   // setPassword: (password: string) => void;
 };
